@@ -25,6 +25,9 @@ async function loginUser(url, userData) {
         console.log(username, password);
         const accessToken = json.accessToken;
         localStorage.setItem('accessToken', accessToken)
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
     } catch(error) {
         console.log(error);
     }
@@ -43,9 +46,13 @@ const loginUrl = `${API_BASE_URL}/api/v1/social/auth/login`
 loginBtn.addEventListener('click', doStuff);
 function doStuff(event) {
 event.preventDefault();
+//const username = usernameInput.value.trim();
+//const password = passwordInput.value.trim();
+console.log(username, password);
 loginUser(loginUrl, userToLogin);
 getWhitToken(postsUrl);
 }
+console.log(userToLogin);
 
 const outPost = document.getElementById("outPost")
 
@@ -75,7 +82,7 @@ async function getWhitToken(url) {
 
 const postsUrl = `${API_BASE_URL}/api/v1/social/posts`;
 
-getWhitToken(postsUrl);
+//getWhitToken(postsUrl);
 
 const ListPosts = (post) => {
     console.log(post);
