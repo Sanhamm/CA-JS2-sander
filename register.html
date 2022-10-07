@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Home Page </title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="./script/login.js" defer></script>
+    <script src="./script/register.js" defer></script>
 </head>
 <body class="bg-secondary">
     <header class="bg-primary sticky-top">
@@ -39,28 +39,25 @@
           </nav>
         </div>
     </header>
-    <main class="form-group m-4 col-lg-6 col-sm-8 mx-auto">
-        <img src="../Media/matheus-ferrero-W7b3eDUb_2I-unsplash.jpg" class="rounded-circle mx-auto d-block w-10 border border-dark" width="200px" height="200px" alt="Marika jenssen sitt profil bilde">
-        <h1 class="h3 mb-3 fw-normal">Sign in</h1>
-        <div class="form-floating mb-4">
-            <input type="email" class="form-control border border-primary" id="mailInput" placeholder="Mail@mail" required>
-            <label for="mailInput">E-mail</label>
-        </div>
-        <div class="form-floating mb-4 ">
-            <input type="password" id="passwordInput" class="form-control border border-primary" placeholder="Password" required>
-            <label for="passwordInput">Password</label>
-        </div>
-        <div class="checkbox mb-3 ">
-            <label for="">
-                <input type="checkbox" value="remember-me" required>
-                Remember me
-            </label>
-        </div>
-        <input type="submit" id="knappen"></input>
-        <a href="./register.html" class="text-muted">Registrer deg</a>    
-      </main>
-    <footer class="bg-primary text-center" style="height: 100px;">
-        <small class="">Css-Framework-CA &copy;Copyright</small>
-    </footer>    
-</body>    
+<main class="form-group m-4 col-lg-6 col-sm-8 mx-auto">    
+    <h1>Register</h1>
+    <p id="usernameMsg"></p>
+    <div class="form-floating mb-4 ">
+        <input type="text" id="nameRegister" class="form-control border border-primary" placeholder="Name" required>
+        <label for="nameInput">Name</label>
+    </div>
+    <div class="form-floating mb-4">
+        <p id="mailMsg"></p>
+        <input type="name" class="form-control border border-primary" id="mailRegister" placeholder="Mail@mail" required>
+        <label for="mailInput">E-mail</label>
+    </div>
+    <div class="form-floating mb-4 ">
+        <p id="passwordMsg"></p>
+        <input type="password" id="passwordRegister" class="form-control border border-primary" placeholder="Password" required>
+        <label for="passwordInput">Password</label>
+    </div>
+    <input type="submit" id="knappenRegister"></input>    
+</main>
+    
+</body>
 </html>
