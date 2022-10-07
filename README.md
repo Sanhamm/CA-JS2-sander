@@ -1,5 +1,5 @@
 # CSS-Framework-CA
-Course Assignment for CSS Framework 
+Course Assignment for Javascrip 2
 
 netfify: https://wonderful-cobbler-70de21.netlify.app/
 
