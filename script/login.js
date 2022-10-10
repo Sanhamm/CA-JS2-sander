@@ -3,9 +3,7 @@ const API_BASE_URL = 'https://nf-api.onrender.com';
 const usernameInput = document.getElementById('mailInput')
 const passwordInput = document.getElementById('passwordInput')
 const loginBtn = document.getElementById("knappen")
-
-const username = usernameInput.value.trim();
-const password = passwordInput.value.trim();
+const wrongMsg = document.getElementById("bannerWrong")
 
 async function loginUser(url, userData) {
     try {
@@ -17,14 +15,19 @@ async function loginUser(url, userData) {
             body: JSON.stringify(userData),
         };
         const response = await fetch(url, postData)
-        //console.log(response);
+        console.log(response);
         const json = await response.json();
-        const accessToken = json.accessToken;
-        localStorage.setItem('accessToken', accessToken);
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-        localStorage.setItem('username', username);
-
+        if (response.status == 200) {
+             const accessToken = json.accessToken;
+            localStorage.setItem('accessToken', accessToken);
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            localStorage.setItem('username', username);
+            window.location = "index.html"
+        } else {
+            console.log(json.message);
+            wrongMsg.innerHTML = json.message;
+        }
     } catch(error) {
         console.log(error);
     }
@@ -32,14 +35,37 @@ async function loginUser(url, userData) {
 
 const loginUrl = `${API_BASE_URL}/api/v1/social/auth/login`
 
-loginBtn.addEventListener('click', doStuff);
-function doStuff(event) {
-event.preventDefault();
-const username = usernameInput.value.trim();
-const password = passwordInput.value.trim();
-const userToLogin = {
-    email: username,
-    password: password,
+function validateLogin(val) {
+    val.preventDefault();
+    wrongMsg.innerHTML = "";
+
+    const usernameLogin = usernameInput.value.trim();
+    const passwordLogin = passwordInput.value.trim();
+
+    let userVali = false;
+    let passwordVali = false;
+
+    const userToLogin = {
+        email: usernameLogin,
+        password: passwordLogin,
+    }
+
+    if (usernameLogin.includes("@stud.noroff.no") || usernameLogin.includes("@noroff.no")) {
+        userVali = true;
+    } else {
+        console.log("wrong");
+        wrongMsg.innerHTML = "Invalid email or password"
+    }
+
+    if (passwordLogin.length < 8) {
+        wrongMsg.innerHTML = "Invalid email or password"
+    } else {
+        passwordVali = true;
+    }
+
+    if (userVali === true && passwordVali === true) {
+        loginUser(loginUrl, userToLogin);
+    }
 }
-loginUser(loginUrl, userToLogin);
-}
+
+loginBtn.addEventListener('click', validateLogin);

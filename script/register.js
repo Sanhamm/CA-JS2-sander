@@ -22,6 +22,7 @@ async function registerNewUser(url, data) {
         };
         const response = await fetch(url, options);
         const answer = await response.json();
+        console.log(response);
         console.log(answer);
     } catch(error) {
         console.warn(error);
@@ -30,27 +31,26 @@ async function registerNewUser(url, data) {
 
 function registerBtn(regi) {
     regi.preventDefault();
-    console.log("kjør");
     const usernameR = usernameRegister.value.trim();
     const passwordR = passwordRegister.value.trim();
     const nameR = nameRegister.value.trim()
 }
 
-loginBtnRegister.addEventListener('click', validateForm)
-
-
-//---------------------------------------- auth
-
-//usernameR
-//nameR
-//passwordR
-
 const usernameMsg = document.getElementById("usernameMsg")
 const mailMsg = document.getElementById("mailMsg")
 const passwordMsg = document.getElementById("passwordMsg")
 
+
 function validateForm(val) {
     val.preventDefault();
+
+    const usernameR = usernameRegister.value.trim();
+    const passwordR = passwordRegister.value.trim();
+    const nameR = nameRegister.value.trim()
+
+    let userVal = false;
+    let mailVal = false;
+    let passwordVal = false;
 
     const registerUser = {
         name: nameR,
@@ -60,30 +60,28 @@ function validateForm(val) {
 
     if (nameR.length > 2) {
         usernameMsg.innerHTML = "";
-        console.log(nameR);
+        userVal = true;
     } else {
         usernameMsg.innerHTML = "Your name must be atleast 2 characters long"
-        console.log("bad");
     }
 
     if (usernameR.includes("@stud.noroff.no") || usernameR.includes("@noroff.no")) {
         mailMsg.innerHTML = "";
-        console.log(usernameR);
+        mailVal = true;
     } else {
         mailMsg.innerHTML = "Email is not valid"
-        console.log("wrong");
     }
 
     if (passwordR.length < 8) {
         passwordMsg.innerHTML = "You need atleast 8 characters"
     } else {
         passwordMsg.innerHTML = "";
+        passwordVal = true;
     }
 
-
-    
-    registerNewUser(registerURL, registerUser);
-
+    if (userVal === true && mailVal === true && passwordVal === true) {
+        registerNewUser(registerURL, registerUser);
+    } 
 }
 
-
+loginBtnRegister.addEventListener('click', validateForm)

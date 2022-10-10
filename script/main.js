@@ -36,7 +36,7 @@ const ListPosts = (post) => {
         <div class="card col-sm-10 col-lg-8 mx-auto mb-5 border-primary">
             <div class="card-body">
                 <h2 class="card-title mt-2">${inn.title}</h2>
-                <img src="${inn.media}">
+                <img class = "img-fluid" src="${inn.media}">
                 <p class="card-text mt-4 mb-3">${inn.body}</p>
                 <a href="" class="text-black text-decoration-none"><em>@${inn.author.name}</em></a>
                 <button class="btn btn-outline-white my-2 btn-sm my-sm-0 btn-primary" id="postBtn" type="submit">Delete</button>
