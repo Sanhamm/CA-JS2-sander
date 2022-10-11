@@ -30,23 +30,102 @@ const postsUrl = `${API_BASE_URL}/api/v1/social/posts/?_author=true`;
 
 const ListPosts = (post) => {
     console.log(post);
+    outPost.innerHTML = ""
     for(let inn of post){
-        //console.log(inn.title);
+        const deleteBtn = `<button class="btn btn-outline-primary my-2 btn-sm my-sm-0  deleteBtn"  data-delete="${inn.id}">Delete</button>`
+        const editBtn = `<button class="btn btn-outline-primary my-2 btn-sm my-sm-0 editBtn"  data-edit="${inn.id}"><a href="edit-post.html?id=${inn.id}"text-underline-none">Edit</a></button>`
+
         let newDiv = `
-        <div class="card col-sm-10 col-lg-8 mx-auto mb-5 border-primary">
+        <div class="card col-sm-10 col-lg-10 mx-auto mb-5 border-primary">
             <div class="card-body">
-                <h2 class="card-title mt-2">${inn.title}</h2>
+                <h2 class="card-title mt-2"><a href="./detailPosts.html?id=${inn.id}">${inn.title}</a></h2>
                 <img class = "img-fluid" src="${inn.media}">
                 <p class="card-text mt-4 mb-3">${inn.body}</p>
                 <a href="" class="text-black text-decoration-none"><em>@${inn.author.name}</em></a>
-                <button class="btn btn-outline-white my-2 btn-sm my-sm-0 btn-primary" id="postBtn" type="submit">Delete</button>
+                ${
+                    localStorage.getItem("username") === inn.author.email ? deleteBtn : ""
+                }
+                ${
+                    localStorage.getItem("username") === inn.author.email ? editBtn : "" 
+                }
             </div>
-        </div>
+        
         `;
         outPost.innerHTML += newDiv;
-    
+        //console.log("HEI");
+    }
+
+    const buttonDelete = document.querySelectorAll("button.deleteBtn")
+
+    for (let btnDelete of buttonDelete) {
+        btnDelete.addEventListener("click", () => {
+        console.log(btnDelete.getAttribute("data-delete"));
+        if (confirm("you want to delete this post?")) {
+            deletePosts(btnDelete.getAttribute("data-delete"));
+            }
+    });
+}
+    const editButton = document.querySelectorAll("button.editBtn")
+
+    for ( let btnEdit of editButton) {
+        btnEdit.addEventListener("click", () => {
+            console.log("hei");
+
+        })
+    }
+
+
+}
+
+
+async function deletePosts(id) {
+    console.log(id);
+    const url = `${API_BASE_URL}/api/v1/social/posts/${id}`
+    try {
+        const token = localStorage.getItem("accessToken")
+        const deleteData = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(url, deleteData);
+        const json = await response.json()
+        console.log(json);
+        if (response.status === 200) window.location = "../index.html";
+
+    } catch(error) {
+        console.log(error);
     }
 }
+
+async function editPosts(id) {
+    console.log(id);
+    const url = `${API_BASE_URL}/api/v1/social/posts/${id}`
+    try {
+        const token = localStorage.getItem("accessToken")
+        const editData = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(url, editData)
+        const json = await response.json()
+        console.log(json);
+
+    } catch(error) {
+    console.log(error);
+    }
+}
+
+
+
+
+
+
 getWhitToken(postsUrl);
 
 const titlePost = document.getElementById('title').value;
