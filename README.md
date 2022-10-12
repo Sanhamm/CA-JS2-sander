@@ -1,5 +1,6 @@
 # CSS-Framework-CA
 Course Assignment for Javascrip 2
+Har etter tips fra Lærer valgt å kunne filtrer via search, siden dette skal da fylle begge krav.
 
 netfify: https://wonderful-cobbler-70de21.netlify.app/
 
