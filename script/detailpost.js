@@ -40,7 +40,6 @@ const ListPosts = (post) => {
                 <h2 class="card-title mt-2">${post.title}</h2>
                 <img class = "img-fluid" src="${post.media}">
                 <p class="card-text mt-4 mb-3">${post.body}</p>
-                <button class="btn btn-outline-white my-2 btn-sm my-sm-0 btn-primary" id="deleteBtn" type="button">Delete</button>
             </div>
         </div>
         `;

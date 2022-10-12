@@ -22,8 +22,14 @@ async function registerNewUser(url, data) {
         };
         const response = await fetch(url, options);
         const answer = await response.json();
-        console.log(response);
-        console.log(answer);
+        console.log(response.ok);
+        console.log(answer.statusCode);
+        if (response.ok == true) {
+            window.location = "../login.html"
+        }
+        if (answer.statusCode == 400) {
+            usernameMsg.innerHTML = "Something went wrong, try again"
+        }
     } catch(error) {
         console.warn(error);
     }
