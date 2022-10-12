@@ -25,9 +25,7 @@ async function editPost(url) {
             body: JSON.stringify(userToEdit),
         };
         const response = await fetch(url, editData)
-        console.log(response);
         const json = await response.json();
-        console.log(json);
         window.location = "index.html"
 
     } catch(error) {
@@ -41,6 +39,5 @@ btnEdit.addEventListener('click', postFunction)
 
 function postFunction(event) {
     event.preventDefault();
-    console.log(editPost());
     editPost(editUrl);
 }

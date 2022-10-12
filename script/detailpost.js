@@ -6,9 +6,7 @@ const API_BASE_URL = 'https://nf-api.onrender.com';
 
 async function detailPosts(url) {
     try {
-        //console.log(url);
         const token = localStorage.getItem('accessToken');
-        //console.log(token);
         const fetchData = {
             method: 'GET',
             headers: {
@@ -28,12 +26,9 @@ const detailUrl = `${API_BASE_URL}/api/v1/social/posts/${id}`;
 const outPost = document.getElementById('detailPost')
 
 const ListPosts = (post) => {
-    console.log(post);
     document.title = post.title
-    console.log(post.title);
 
     outPost.innerHTML = ""
-        console.log(post.id);
         let newDiv = `
         <div class="card col-sm-10 col-lg-10 mx-auto mb-5 border-primary">
             <div class="card-body">

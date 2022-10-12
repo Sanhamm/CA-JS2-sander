@@ -22,8 +22,6 @@ async function registerNewUser(url, data) {
         };
         const response = await fetch(url, options);
         const answer = await response.json();
-        console.log(response.ok);
-        console.log(answer.statusCode);
         if (response.ok == true) {
             window.location = "../login.html"
         }

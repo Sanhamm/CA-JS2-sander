@@ -46,7 +46,6 @@ const ListPosts = (post) => {
         
         `;
         outPost.innerHTML += newDiv;
-        //console.log("HEI");
     }
 
     const buttonDelete = document.querySelectorAll("button.deleteBtn")

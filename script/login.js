@@ -15,9 +15,7 @@ async function loginUser(url, userData) {
             body: JSON.stringify(userData),
         };
         const response = await fetch(url, postData)
-        console.log(response);
         const json = await response.json();
-        console.log(json);
         if (response.status == 200) {
              const accessToken = json.accessToken;
             localStorage.setItem('accessToken', accessToken);
@@ -26,7 +24,6 @@ async function loginUser(url, userData) {
             localStorage.setItem('username', username);
             window.location = "index.html"
         } else {
-            console.log(json.message);
             wrongMsg.innerHTML = json.message;
         }
     } catch(error) {
@@ -54,7 +51,6 @@ function validateLogin(val) {
     if (usernameLogin.includes("@stud.noroff.no") || usernameLogin.includes("@noroff.no")) {
         userVali = true;
     } else {
-        console.log("wrong");
         wrongMsg.innerHTML = "Invalid email or password"
     }
 
